@@ -1,4 +1,6 @@
+//helps with try catch for admin in controllers folder
 const expressPromise = require("express-promise-router");
+
 const router = expressPromise();
 
 const adminControllers = require("../controllers/admin");
@@ -8,6 +10,18 @@ router.route("/add-product")
     .get(adminControllers.getAddProduct);
 
 router.route("/add-product")
-    .post(fileupload.single("image"), adminControllers.addProduct);
+    .post(fileupload.single("image"), adminControllers.postProduct);
+
+router.route("/admin-products")
+    .get(adminControllers.getProducts);
+
+router.route("/delete-product")
+    .post(adminControllers.deleteProduct);
+
+router.route("/edit-product/:id")
+    .get(adminControllers.editProduct);
+
+router.route("/edit-product")
+    .post(adminControllers.postEditProduct);
 
 module.exports = router;

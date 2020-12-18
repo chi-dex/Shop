@@ -18,8 +18,10 @@
                     <span class="price">$<%=product.amount%></span>
                 </div>
 
-                <div class="card-action"><a class="add" href="/cart/<%=product._id%>">Add To Cart</a>
-                    <a class="details" href="/product-details/<%=product._id %>">Details</a></div>
+                <div class="card-action">
+                    <%- include('../layouts/addTocart.ejs', {product: product}) %>
+                    <a class="details" href="/product/<%=product._id %>">Details</a>
+                </div>
             </div>
             <% }) %>
         </div>

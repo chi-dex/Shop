@@ -9,6 +9,7 @@
 
 $primary-color-1: #111;
 $primary-color-2: #333;
+$primary-color-3: #fff;
 
 @mixin flex {
   display: flex;
@@ -35,7 +36,7 @@ header {
     background-color: transparent;
     outline: none;
     border: none;
-    color: #fff;
+    color: $primary-color-3;
     padding: 0 1rem;
     cursor: pointer;
     height: 100%;
@@ -47,20 +48,20 @@ nav {
   @include flex;
 
   a {
-    color: #fff;
+    color: $primary-color-3;
     text-decoration: none;
     display: block;
     padding: 1.2rem;
     transition: background-color 0.3s ease-in-out;
 
     &:hover {
-      color: #fff;
+      color: $primary-color-3;
       background-color: red;
     }
   }
 
   a.active {
-    color: #fff;
+    color: $primary-color-3;
     background-color: red;
   }
   ul {
@@ -106,12 +107,12 @@ header {
   li a {
     display: block;
     padding: 1rem;
-    color: #fff;
+    color: $primary-color-3;
     text-align: center;
     text-decoration: none;
 
     &:hover {
-      color: #fff;
+      color: $primary-color-3;
       background-color: red;
     }
   }
@@ -150,11 +151,12 @@ header {
         width: 100%;
         height: 30rem;
         transition: all 0.6s ease-in-out;
+        object-fit: cover;
       }
     } //card-image
 
     .card-details {
-      background-color: #fff;
+      background-color: $primary-color-3;
       height: 120px;
       transition: all 0.7s ease-in-out;
       z-index: 4;
@@ -175,11 +177,25 @@ header {
       a {
         color: #000;
         display: block;
-        background-color: #fff;
+        background-color: $primary-color-3;
         text-decoration: none;
         padding: 1rem;
         margin-bottom: 1rem;
         text-align: center;
+        font-weight: bold;
+      }
+
+      button {
+        color: #000;
+        display: block;
+        background-color: $primary-color-3;
+        text-decoration: none;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+        border: none;
         font-weight: bold;
       }
     }

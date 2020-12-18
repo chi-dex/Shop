@@ -1,25 +1,79 @@
 const Product = require("../model/product");
+const delteFile = require("../middleware/deleteImage");
+const path = require("path");
+const fs = require("fs");
+const product = require("./product");
 
 module.exports = {
     getAddProduct: (req, res, next) => {
         res.render("admin/edit-product", {
             pageTitle: "Add Product",
-            path: "/admin/add-product"
+            path: "/admin/add-product",
+            edit: false
         });
     },
 
-    addProduct: async (req, res, next) => {
+    postProduct: async (req, res, next) => {
 
-        try {
-            const { title, description, amount } = req.body;
-            const image = req.file.path;
+        const { title, description, amount } = req.body;
+        const image = req.file.path;
 
-            const product = await new Product({ title, description, image, amount });
-            await product.save();
-            res.redirect("/");
+        const product = await new Product({ title, description, image, amount });
+        await product.save();
+        res.redirect("/");
+
+    },
+    getProducts: async (req, res, next) => {
+        const products = await Product.find();
+
+        res.render("admin/product-list", {
+            pageTitle: "Admin Products",
+            path: "/admin/admin-products",
+            products: products
+        });
+    },
+
+    deleteProduct: async (req, res, next) => {
+        const id = req.body.id;
+        const product = await Product.findOneAndDelete({ _id: id });
+        delteFile(product.image)
+        res.redirect("/admin/admin-products")
+    },
+
+    editProduct: async (req, res, next) => {
+        const id = req.params.id;
+        const edit = req.query.edit;
+
+        const product = await Product.findOne({ _id: id });
+        if (!product) {
+            return res.redirect("/admin/admin-products")
         }
-        catch (err) {
-            next(new Error(err))
-        }
+        res.render("admin/edit-product", {
+            path: "admin/edit-product",
+            pageTitle: "Edit Product",
+            product: product,
+            edit: edit
+        });
+    },
+    postEditProduct: async (req, res, next) => {
+
+        const productId = req.params.id;
+        console.log(req.body)
+        // const product = await Product.findById(productId);
+        // if (!product) {
+        //     return res.redirect("/admin/admin-products")
+        // }
+
+        // const { title, description, amount } = req.body;
+        // product.title = title
+        // product.amount = amount
+        // product.description = description
+        // if (req.file) {
+        //     product.image = req.file.path;
+        //     delteFile(req.file.path);
+        // }
+
+        // const updatedProduct = await product.save();
+        // console.log(updatedProduct)
     }
 }
