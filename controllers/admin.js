@@ -57,23 +57,23 @@ module.exports = {
     },
     postEditProduct: async (req, res, next) => {
 
-        const productId = req.params.id;
-        console.log(req.body)
-        // const product = await Product.findById(productId);
-        // if (!product) {
-        //     return res.redirect("/admin/admin-products")
-        // }
+        const { productId } = req.body;
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.redirect("/admin/admin-products")
+        }
 
-        // const { title, description, amount } = req.body;
-        // product.title = title
-        // product.amount = amount
-        // product.description = description
-        // if (req.file) {
-        //     product.image = req.file.path;
-        //     delteFile(req.file.path);
-        // }
+        const { title, description, amount } = req.body;
+        product.title = title || product.title
+        product.amount = amount || product.amount
+        product.description = description || product.description
+        if (req.file) {
+            delteFile(product.image);
+            product.image = req.file.path;
 
-        // const updatedProduct = await product.save();
-        // console.log(updatedProduct)
+        }
+
+        await product.save();
+        res.redirect("/admin/admin-products")
     }
 }
