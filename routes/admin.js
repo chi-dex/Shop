@@ -18,10 +18,10 @@ router.route("/admin-products")
 router.route("/delete-product")
     .post(adminControllers.deleteProduct);
 
-router.route("/edit-product")
-    .post(fileupload.single("image"), adminControllers.postEditProduct);
-
 router.route("/edit-product/:id")
     .get(adminControllers.editProduct);
+
+router.route("/edit-product")
+    .post(adminControllers.postEditProduct);
 
 module.exports = router;
