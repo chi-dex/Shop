@@ -2,7 +2,7 @@ const Product = require("../model/product");
 
 module.exports = {
     getIndex: async (req, res, next) => {
-
+        console.log(req.user)
         const products = await Product.find();
         res.render("shop/index", {
             pageTitle: "Home",

@@ -17,7 +17,10 @@
 
     <nav class="nav-right">
         <ul class="nav-items">
-            <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="/user/signin"
+                    class="nav-link <%= path === '/user/signin' ? 'active': ''%>">Sign In</a></li>
+            <li class="nav-item"><a href="/user/signup"
+                    class="nav-link  <%= path === '/user/signup' ? 'active': ''%>">Sign Up</a></li>
             <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
         </ul>
     </nav>

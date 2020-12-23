@@ -130,7 +130,6 @@ header {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-
   .card {
     width: 20rem;
     height: 30rem;
@@ -140,6 +139,7 @@ header {
     overflow: hidden;
     cursor: pointer;
     margin: 1rem 0.5rem;
+    background-color: #000;
 
     .card-image {
       width: 100%;
@@ -156,7 +156,7 @@ header {
     } //card-image
 
     .card-details {
-      background-color: $primary-color-3;
+      background-color: red;
       height: 120px;
       transition: all 0.7s ease-in-out;
       z-index: 4;
@@ -164,7 +164,8 @@ header {
         display: block;
         @include details();
         padding: 1rem;
-        color: $primary-color-2;
+        color: $primary-color-3;
+        font-weight: bold;
       }
     } //card-details
 
